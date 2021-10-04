@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="echec">
+    <xs:commentaire>AFG(noir) contre Jek(blanc), au 31eme coup, partie du 7 fevrier 2003</xs:commentaire>
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="nomCouleur" type="Color" maxOccurs="2" minOccurs="2"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+<xs:complexType name = "Color">
+    <xs:sequence>
+        <xs:element name ="piece" type="Piece" minOccurs="16" maxOccurs="16"/>
+    </xs:sequence>
+</xs:complexType>
+<xs:complexType name = "Piece">
+    <xs:sequence>
+        <xs:element name="nom" type="TypePiece"/>
+        <xs:element name="position" type="Position"/>
+    </xs:sequence>
+</xs:complexType>
+<xs:simpleType name="TypePiece">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="roi"/>
+        <xs:enumeration value="fou"/>
+        <xs:enumeration value="reine"/>
+        <xs:enumeration value="tour"/>
+        <xs:enumeration value="cavalier"/>
+        <xs:enumeration value="pion"/>
+    </xs:restriction>
+</xs:simpleType>
+<xs:complexType name="Position">
+    <xs:sequence>
+        <xs:element name="colonne" type="Colonne"/>
+        <xs:element name="ligne" type="Ligne"/>
+    </xs:sequence>
+</xs:complexType>
+<xs:simpleType name="Colonne">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[A-J]"/>
+    </xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="Ligne">
+    <xs:restriction base="xs:byte">
+        <xs:maxInclusive value="8"/>
+        <xs:minInclusive value="1"/>
+    </xs:restriction>
+</xs:simpleType>
+</xs:schema>
